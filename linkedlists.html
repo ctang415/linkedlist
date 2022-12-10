@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Practice</title>
+</head>
+<body>
+    <script>
+        class Node {
+            constructor(data, next) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        class LinkedList {
+            constructor() {
+                this.head = null;
+            }
+            append(data) {
+                let newNode = new Node(data)
+                if (this.head === null) {
+                    this.head = newNode
+                } else {
+                let temp = this.head;
+                // while there is another node linked to our current node, set temp to the next node
+                while (temp.next !== null) {
+                    temp = temp.next;
+                }
+                temp.next = newNode
+            }
+        }
+            prepend(data) {
+                if (this.head == null) {
+                    this.head = new Node(data)
+                } else {
+                let newNode = new Node(data);
+                newNode.next = this.head;
+                this.head = newNode;
+            }
+        }
+            getSize() {
+                if (this.head == null) {
+                    return 0
+                } else {
+                let count = 0;
+                let temp = this.head;
+                while (temp) {
+                    count ++;
+                    temp = temp.next;
+                }
+                return count
+            }
+        }
+            getFirst() {
+                return this.head.data;
+            }
+            getLast() {
+                let temp = this.head;
+                while (temp) {
+                    if (temp.next == null) {
+                    return temp.data
+                    }
+                    temp = temp.next
+                }
+            }
+            findIndex(index) {
+                let count = 0;
+                let temp = this.head;
+                while (temp) {
+                    if (count === index) {
+                        return temp
+                    }
+                    count++;
+                    temp = temp.next;
+                }
+            }
+            removeLast() {
+                let temp = this.head;
+                if (temp.next == null) {
+                    this.head = null;
+                } else {
+                let prev = null;
+                while (temp.next !== null) {
+                        prev = temp
+                        temp = temp.next 
+                        if (temp.next == null) {
+                            prev.next = null;
+                        }
+                    }
+            }
+        }
+            containsValue(data) {
+                let temp = this.head;
+                while (temp) {
+                    if (temp.data === data) {  
+                        return true
+                    } else {
+                    temp = temp.next;
+                }
+            }
+            return false;
+        }
+        findIndex(data) {
+            let count = 0;
+            let temp = this.head;
+            while (temp) {
+                if (temp.data === data) {
+                    return count;
+                } else {
+                    temp = temp.next;
+                    count++
+                }
+            }
+            return null;
+        }
+        toString() {
+            if (this.head == null) {
+                return null
+            } else {
+            let temp = this.head;
+            let stringText = "( " + temp.data + " )"
+            while (temp.next !== null) {
+                temp = temp.next;
+                stringText += " -> " + "( " + temp.data + " )"
+                }
+                stringText += " -> " + "null"
+                return stringText;
+        }
+    }
+}
+    </script>
+</body>
+</html>
